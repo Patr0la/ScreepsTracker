@@ -2,7 +2,7 @@
 var MongoClient = require("mongodb").MongoClient;
 var assert = require("assert");
 
-var uri = "mongodb+srv://patrola:1dad889ff236635dc1e@maincluster-8n1cy.mongodb.net/maindb?retryWrites=true";
+var uri = "mongodb+srv://server_0:1Wuj5IoQvZFCUNeY@maincluster-8n1cy.mongodb.net/maindb?retryWrites=true";
 
 const dbName = 'maindb';
 
