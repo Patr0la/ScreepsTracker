@@ -1,6 +1,7 @@
 'use strict';
 var MongoClient = require("mongodb").MongoClient;
 var assert = require("assert");
+var fs = require("fs");
 
 var uri = "mongodb+srv://server_0:1Wuj5IoQvZFCUNeY@maincluster-8n1cy.mongodb.net/maindb?retryWrites=true";
 
@@ -20,7 +21,20 @@ MongoClient.connect(uri, {
 
 	db = client.db(dbName);
 
-	setInterval(LOOP, 60000);
+	setInterval(function() {
+		try {
+			LOOP();
+		} catch (e) {
+			fs.appendFile("./errors.txt", e, function(err) {
+				if (err) {
+					return console.log(err);
+				}
+
+				console.log("ERROR: " + e);
+			});
+		}
+	}, 60000);
+
 });
 
 const https = require("https");
