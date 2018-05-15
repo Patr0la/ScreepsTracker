@@ -24,8 +24,9 @@ MongoClient.connect(uri, {
 	setInterval(function() {
 		try {
 			LOOP();
+			ddsadsa
 		} catch (e) {
-			fs.appendFile("./errors.txt", e, function(err) {
+			fs.appendFile("./errors.txt", e + "\n" + e.stack, function(err) {
 				if (err) {
 					return console.log(err);
 				}
@@ -33,7 +34,7 @@ MongoClient.connect(uri, {
 				console.log("ERROR: " + e);
 			});
 		}
-	}, 60000);
+	}, 10000);
 
 });
 
