@@ -34,7 +34,7 @@ MongoClient.connect(uri, {
 				console.log("ERROR: " + e);
 			});
 		}
-	}, 10000);
+	}, 60000);
 
 });
 
