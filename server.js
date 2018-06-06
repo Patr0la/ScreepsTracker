@@ -68,7 +68,8 @@ function LOOP() {
 
 function ProcesData(input) {
 	let data = JSON.parse(input);
-	SaveData(data);
+	if (data.error != "server down")
+		SaveData(data);
 }
 let c = 0;
 
