@@ -52,24 +52,25 @@ function LOOP() {
 		});
 		res.on("end", () => {
 			body = JSON.parse(body);
-			const buffer = Buffer.from(body.data.split(':')[1], 'base64');
-			zlib.unzip(buffer, (err, buffer) => {
-				if (!err) {
-					ProcesData(buffer.toString());
-				} else {
-					console.log(err);
-					db.close();
-					process.exit();
-				}
-			});
+			if (body.error != "server down") {
+				const buffer = Buffer.from(body.data.split(':')[1], 'base64');
+				zlib.unzip(buffer, (err, buffer) => {
+					if (!err) {
+						ProcesData(buffer.toString());
+					} else {
+						console.log(err);
+						db.close();
+						process.exit();
+					}
+				});
+			}
 		});
 	});
 }
 
 function ProcesData(input) {
 	let data = JSON.parse(input);
-	if (data.error != "server down")
-		SaveData(data);
+	SaveData(data);
 }
 let c = 0;
 
